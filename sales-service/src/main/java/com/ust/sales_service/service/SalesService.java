@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -96,6 +97,23 @@ public class SalesService {
     }
 
     public List<SalesSummaryDto> getSalesByDate(){
-        return salesRepository.getSalesSummaryByDate();
+
+        List<Object[]> results = salesRepository.getSalesSummaryByDate();
+        List<SalesSummaryDto> salesSummary = new ArrayList<>();
+        System.out.println(results);
+
+        for (Object[] record : results) {
+            Date saleDate = (Date) record[0];
+            Double totalPrice = ((Double) record[1]).doubleValue(); // Second column: SUM(total_price)
+            Long totalSales = ((Long) record[2]).longValue();     // Third column: COUNT(sale_id)
+
+            // Add to the DTO list
+            salesSummary.add(new SalesSummaryDto(saleDate, totalPrice, totalSales));
+        }
+
+// The `salesSummary` list now contains DTOs with the processed data
+        return salesSummary;
+
+
     }
 }
