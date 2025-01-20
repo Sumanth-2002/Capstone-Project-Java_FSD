@@ -3,6 +3,7 @@ package com.ust.sales_service.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashMap;
 
 @Entity
 public class Sales {
@@ -17,6 +18,7 @@ public class Sales {
     private Customer customer;
     private Long productId;
     private int quantity;
+//    private HashMap<Integer,Integer> productData;
     private Double totalPrice;
     private Date saleDate;
     private String paymentMethod;
