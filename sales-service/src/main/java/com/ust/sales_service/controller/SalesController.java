@@ -59,4 +59,9 @@ public class SalesController {
     public List<SalesSummaryDto> getSaleByDate(){
         return salesService.getSalesByDate();
     }
+
+    @GetMapping("/getCustomerData")
+    public List<Object []> getCustomerData(){
+        return salesService.getCustomerDat();
+    }
 }

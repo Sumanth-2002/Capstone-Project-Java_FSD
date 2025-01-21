@@ -13,4 +13,5 @@ public interface SalesRepository extends JpaRepository<Sales,Long> {
     @Query(value = "SELECT s.sale_date, SUM(s.total_price), COUNT(s.sale_id) " +
             "FROM sales s GROUP BY s.sale_date", nativeQuery = true)
     List<Object[] > getSalesSummaryByDate();
+
 }

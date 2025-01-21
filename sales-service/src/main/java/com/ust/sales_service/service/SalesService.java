@@ -107,13 +107,13 @@ public class SalesService {
             Double totalPrice = ((Double) record[1]).doubleValue(); // Second column: SUM(total_price)
             Long totalSales = ((Long) record[2]).longValue();     // Third column: COUNT(sale_id)
 
-            // Add to the DTO list
             salesSummary.add(new SalesSummaryDto(saleDate, totalPrice, totalSales));
         }
 
-// The `salesSummary` list now contains DTOs with the processed data
         return salesSummary;
-
-
     }
+    public List<Object []> getCustomerDat(){
+        return customerRepository.getCustomerDataById();
+    }
+
 }
