@@ -2,13 +2,16 @@ package com.ust.sales_service.service;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+import com.ust.sales_service.dto.CustomerSummaryDto;
 import com.ust.sales_service.dto.SalesSummaryDto;
 import com.ust.sales_service.model.Customer;
 import com.ust.sales_service.model.Sales;
 import com.ust.sales_service.repository.CustomerRepository;
 import com.ust.sales_service.repository.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,6 +28,8 @@ public class SalesService {
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private WebClient.Builder webClientBuilder;
 
     public Sales addSalesData(Sales sales) {
         Customer customer = sales.getCustomer();
@@ -113,7 +118,20 @@ public class SalesService {
         return salesSummary;
     }
     public List<Object []> getCustomerDat(){
-        return customerRepository.getCustomerDataById();
+
+        List <Object []>  objs = customerRepository.getCustomerDataById();
+        CustomerSummaryDto customerSummaryDto = new CustomerSummaryDto();
+        for(Object[] obje : objs) {
+            Object obj = webClientBuilder.baseUrl("http://localhost:9093")
+                    .build()
+                    .get()
+                    .uri(new StringBuilder().append("/products/getProductById").append(obje[1]).toString())
+                    .retrieve()
+                    .bodyToMono(new ParameterizedTypeReference<>() {
+                    })
+                    .block();
+        }
+        return objs;
     }
 
 }
