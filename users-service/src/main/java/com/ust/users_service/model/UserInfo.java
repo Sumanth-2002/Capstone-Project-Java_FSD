@@ -18,24 +18,12 @@ public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    //    @NotBlank(message = "Name cannot be blank")
-//    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String name;
 
-    //    @NotBlank(message = "Email cannot be blank")
-//    @Email(message = "Email should be valid")
     private String email;
 
-    //    @NotBlank(message = "Password cannot be blank")
-//    @Pattern(
-//            regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
-//            message = "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
-//    )
     private String password;
 
-    //    @NotBlank(message = "Roles cannot be blank")
-//    @Pattern(regexp = "^(ROLE_ADMIN|ROLE_USER)$", message = "Role must be one of ROLE_ADMIN or ROLE_USER")
     private  String roles;
 
     public Long getId() {
@@ -46,41 +34,35 @@ public class UserInfo {
         this.id = id;
     }
 
-    public @NotBlank(message = "Name cannot be blank") @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters") String getName() {
+    public  String getName() {
         return name;
     }
 
-    public void setName(@NotBlank(message = "Name cannot be blank") @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters") String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public @NotBlank(message = "Email cannot be blank") @Email(message = "Email should be valid") String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
-    public void setEmail(@NotBlank(message = "Email cannot be blank") @Email(message = "Email should be valid") String email) {
+    public void setEmail( String email) {
         this.email = email;
     }
 
-    public @NotBlank(message = "Password cannot be blank") @Pattern(
-            regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
-            message = "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
-    ) String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotBlank(message = "Password cannot be blank") @Pattern(
-            regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
-            message = "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
-    ) String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public @NotBlank(message = "Roles cannot be blank") @Pattern(regexp = "^(ROLE_ADMIN|ROLE_USER)$", message = "Role must be one of ROLE_ADMIN or ROLE_USER") String getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(@NotBlank(message = "Roles cannot be blank") @Pattern(regexp = "^(ROLE_ADMIN|ROLE_USER)$", message = "Role must be one of ROLE_ADMIN or ROLE_USER") String roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 

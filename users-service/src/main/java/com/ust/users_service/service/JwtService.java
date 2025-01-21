@@ -2,11 +2,13 @@ package com.ust.users_service.service;
 
 
 
+import com.ust.users_service.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -19,9 +21,10 @@ import java.util.function.Function;
 @Component
 public class JwtService {
 
-
+    @Autowired
+    private UserRepository userRepository;
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
-
+    public static final String ROLE_CLAIM = "role";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -57,6 +60,8 @@ public class JwtService {
 
     public String generateToken(String userName){
         Map<String,Object> claims=new HashMap<>();
+
+        claims.put(ROLE_CLAIM,userRepository.findByName(userName).get().getRoles());
         return createToken(claims,userName);
     }
 

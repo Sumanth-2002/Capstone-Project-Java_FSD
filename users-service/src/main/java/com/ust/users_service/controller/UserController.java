@@ -34,8 +34,6 @@ public class UserController {
     }
 
 
-
-    //login endpoint
     @PostMapping("/authenticate")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -44,10 +42,6 @@ public class UserController {
         } else {
             throw new UsernameNotFoundException("invalid user request !");
         }
-
-
     }
-
-
 
 }
