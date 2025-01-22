@@ -1,7 +1,10 @@
 package com.UST.StoresMicroservice.controller;
 
+import com.UST.StoresMicroservice.dto.RegionalStoreId;
+import com.UST.StoresMicroservice.dto.StoreDto;
 import com.UST.StoresMicroservice.model.Inventory;
 import com.UST.StoresMicroservice.model.Store;
+import com.UST.StoresMicroservice.repository.StoreRepository;
 import com.UST.StoresMicroservice.service.InventoryService;
 import com.UST.StoresMicroservice.service.StoreService;
 import org.apache.coyote.Response;
@@ -11,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/stores")
@@ -20,6 +24,9 @@ public class StoreController {
 
     @Autowired
     private InventoryService inventoryService;
+
+    @Autowired
+    private StoreRepository storeRepository;
 
     @PostMapping
     public ResponseEntity<Store> createStore(@RequestBody Store store) {
@@ -96,11 +103,14 @@ public class StoreController {
     }
 
     @GetMapping("/store-ids")
-    public String getStoreIds(String region) {
+    public List<StoreDto> getStoreIds(String region) {
         return storeService.getStoreIdsAsJson(region);
     }
 
-
+    @GetMapping("/getALlStores")
+    public List<RegionalStoreId>getAllStoreBYRegion(){
+        return storeService.getStoreIdsGroupedByRegion();
+    }
 
 
 }

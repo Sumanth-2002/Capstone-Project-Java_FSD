@@ -12,13 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserInfoUserDetails implements UserDetails {
-    private String name;
+    private String email;
     private String password;
     private List<GrantedAuthority> authorities;
     private String role;
 
     public UserInfoUserDetails(UserInfo userInfo) {
-        name=userInfo.getName();
+        this.email = userInfo.getEmail();
         password=userInfo.getPassword();
         role = userInfo.getRoles();
         authorities= Arrays.stream(userInfo.getRoles().split(","))
@@ -37,8 +37,8 @@ public class UserInfoUserDetails implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
-        return name;
+    public String getUsername() { // This still maps to the 'username' field for Spring Security
+        return email; // Return email instead of username
     }
 
     @Override

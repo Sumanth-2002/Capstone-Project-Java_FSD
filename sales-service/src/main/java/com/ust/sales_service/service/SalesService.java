@@ -120,13 +120,13 @@ public class SalesService {
 
         List<CustomerSummaryDto> customerSummaryDtos = new ArrayList<>();
 
-        // Loop through the fetched data and make API calls for each customer
+
         for (Object[] obj : objs) {
             if (obj.length > 1 && obj[1] != null) { // Ensure obj[1] exists and is not null
                 Long productId = ((Number) obj[1]).longValue(); // Convert to Long
                 CustomerSummaryDto customerSummaryDto = new CustomerSummaryDto();
 
-                // Make API call to fetch product details
+
                 Map<String, Object> productDetails = webClientBuilder
                         .baseUrl("http://localhost:9093")
                         .build()
@@ -138,16 +138,14 @@ public class SalesService {
                         .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
                         .block();
 
-                // Extract product name from API response
                 String productName = productDetails != null ? (String) productDetails.get("name") : "Unknown";
 
-                // Populate CustomerSummaryDto
+
                 customerSummaryDto.setCount(((Number) obj[0]).longValue());
                 customerSummaryDto.setProduct_id(productId);
                 customerSummaryDto.setCustomerName((String) obj[2]);
                 customerSummaryDto.setProductName(productName);
 
-                // Add to the list
                 customerSummaryDtos.add(customerSummaryDto);
             }
         }

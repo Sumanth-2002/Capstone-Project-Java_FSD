@@ -25,6 +25,7 @@ public class JwtService {
     private UserRepository userRepository;
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
     public static final String ROLE_CLAIM = "role";
+    public static final String Username = "username";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -58,12 +59,14 @@ public class JwtService {
     }
 
 
-    public String generateToken(String userName){
-        Map<String,Object> claims=new HashMap<>();
 
-        claims.put(ROLE_CLAIM,userRepository.findByName(userName).get().getRoles());
-        return createToken(claims,userName);
+    public String generateToken(String email) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(ROLE_CLAIM, userRepository.findByEmail(email).get().getRoles());
+        claims.put("email",email);
+        return createToken(claims, userRepository.findByEmail(email).get().getName());
     }
+
 
     private String createToken(Map<String, Object> claims, String userName) {
         return Jwts.builder()

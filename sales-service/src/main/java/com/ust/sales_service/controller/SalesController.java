@@ -1,12 +1,14 @@
 package com.ust.sales_service.controller;
 
 
-import com.ust.sales_service.dto.CustomerSummaryDto;
-import com.ust.sales_service.dto.SalesSummaryDto;
+import com.ust.sales_service.dto.*;
 import com.ust.sales_service.model.Customer;
 import com.ust.sales_service.model.Sales;
+import com.ust.sales_service.service.Metrics;
+import com.ust.sales_service.service.RegionalSalesDataService;
 import com.ust.sales_service.service.SalesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +24,11 @@ public class SalesController {
 
     @Autowired
     private SalesService salesService;
+
+    @Autowired
+    private Metrics metrics;
+    @Autowired
+    private RegionalSalesDataService regionalSalesDataService;
 
     @PostMapping()
     public Sales addSalesData(@RequestBody Sales sales){
@@ -65,4 +72,35 @@ public class SalesController {
     public List<CustomerSummaryDto> getCustomerData(@PathVariable Long customerId){
         return salesService.getCustomerData(customerId);
     }
+
+    @GetMapping("/getAllRegion")
+    public List<RegionalSalesDto>getSalesByRegion(){
+        return regionalSalesDataService.getRegionWiseSalesData();
+    }
+
+    @GetMapping("/getSalesRegion/{region}")
+    public List<StoreSalesDto> getStoreSaleData(@PathVariable String region){
+        return regionalSalesDataService.getStoreByRegion(region);
+    }
+
+    @GetMapping("/product-metrics/year/{year}")
+    public List<Object[]> getProductMetrics(@PathVariable Integer year){
+        return metrics.getProductMetrics(year);
+    }
+    @GetMapping("/product-metrics/month/{month}/year/{year}")
+    public List<Object[]> getProductMetricsByMonthAndYear(@PathVariable Integer month, @PathVariable Integer year) {
+        return metrics.getProductMetricsByMonth(month, year);
+    }
+
+    @GetMapping("/customer-metrics/{year}")
+    public List<CustomerMonthlyDto> getCustomerByYear(@PathVariable Integer year){
+        return metrics.getCustomerPerMonth(year);
+    }
+    @GetMapping("/sale-metrics/{year}")
+    public List<Double []> getSaleByYear(@PathVariable Integer year){
+        return metrics.getSalePerMonth(year);
+    }
+
+
+
 }

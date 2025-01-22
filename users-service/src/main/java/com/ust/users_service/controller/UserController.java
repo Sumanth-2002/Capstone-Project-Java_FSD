@@ -3,6 +3,7 @@ package com.ust.users_service.controller;
 
 import com.ust.users_service.dto.AuthRequest;
 import com.ust.users_service.model.UserInfo;
+import com.ust.users_service.repository.UserRepository;
 import com.ust.users_service.service.JwtService;
 import com.ust.users_service.service.UserService;
 import jakarta.validation.Valid;
@@ -25,7 +26,8 @@ public class UserController {
 
     @Autowired
     private JwtService jwtService;
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -34,17 +36,21 @@ public class UserController {
         return service.addUser(user);
     }
 
+    @GetMapping
+    public String getUSer(){ return "Hello";}
+
 
     @PostMapping("/authenticate")
     public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword())
+        );
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(authRequest.getUsername());
+            return jwtService.generateToken(authRequest.getEmail());
         } else {
-            throw new UsernameNotFoundException("invalid user request !");
+            throw new UsernameNotFoundException("Invalid user request!");
         }
     }
-    @GetMapping
-    public String getUSer(){ return "Hello";}
+
 
 }
