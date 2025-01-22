@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SalesService {
@@ -33,12 +34,13 @@ public class SalesService {
 
     public Sales addSalesData(Sales sales) {
         Customer customer = sales.getCustomer();
+        Long productId = sales.getProductId();
+        
         if (customer != null) {
             if (customer.getCustomerId() == null) {
-                // Save the customer to ensure it exists in the DB
                 customer = customerRepository.save(customer);
             }
-            sales.setCustomer(customer); // Associate the saved customer with the sales
+            sales.setCustomer(customer);
         } else {
             throw new IllegalArgumentException("Customer details are missing in the sales data");
         }
@@ -51,25 +53,21 @@ public class SalesService {
 
     public void saveSalesDataFromCSV(String filePath) {
         try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
-            String[] headers = csvReader.readNext(); // Read and ignore the header row
+            String[] headers = csvReader.readNext();
             String[] line;
 
             while ((line = csvReader.readNext()) != null) {
-                // Parse and create Customer object
-//                Long customerId = Long.valueOf(line[2]);
                 String customerName = line[3];
                 String contactNumber = line[4];
 
 //                Customer customer = customerRepository.findById(customerId).orElse(null);
 
                   Customer  customer = new Customer();
-//                    customer.setCustomerId(customerId);
+
                     customer.setName(customerName);
                     customer.setContactNumber(contactNumber);
                     customerRepository.save(customer);
 
-
-                // Parse and create Sales object
                 Sales sales = new Sales();
                 sales.setStoreId(Integer.parseInt(line[1]));
                 sales.setCustomer(customer);
@@ -79,7 +77,6 @@ public class SalesService {
                 sales.setSaleDate(parseDate(line[8]));
                 sales.setPaymentMethod(line[9]);
 
-                // Save Sales record to the database
                 salesRepository.save(sales);
             }
         } catch (IOException | CsvValidationException e) {
@@ -87,7 +84,6 @@ public class SalesService {
         }
     }
 
-    // Utility method to parse date
     private Date parseDate(String dateStr) {
         try {
             return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(dateStr);
@@ -117,21 +113,46 @@ public class SalesService {
 
         return salesSummary;
     }
-    public List<Object []> getCustomerDat(){
+    public List<CustomerSummaryDto> getCustomerData(Long customerId) {
 
-        List <Object []>  objs = customerRepository.getCustomerDataById();
-        CustomerSummaryDto customerSummaryDto = new CustomerSummaryDto();
-        for(Object[] obje : objs) {
-            Object obj = webClientBuilder.baseUrl("http://localhost:9093")
-                    .build()
-                    .get()
-                    .uri(new StringBuilder().append("/products/getProductById").append(obje[1]).toString())
-                    .retrieve()
-                    .bodyToMono(new ParameterizedTypeReference<>() {
-                    })
-                    .block();
+        // Fetch customer data from the repository
+        List<Object[]> objs = customerRepository.getCustomerDataById(customerId);
+
+        List<CustomerSummaryDto> customerSummaryDtos = new ArrayList<>();
+
+        // Loop through the fetched data and make API calls for each customer
+        for (Object[] obj : objs) {
+            if (obj.length > 1 && obj[1] != null) { // Ensure obj[1] exists and is not null
+                Long productId = ((Number) obj[1]).longValue(); // Convert to Long
+                CustomerSummaryDto customerSummaryDto = new CustomerSummaryDto();
+
+                // Make API call to fetch product details
+                Map<String, Object> productDetails = webClientBuilder
+                        .baseUrl("http://localhost:9093")
+                        .build()
+                        .get()
+                        .uri(uriBuilder -> uriBuilder
+                                .path("/api/products/getProductById/{id}")
+                                .build(productId)) // Replace {id} with productId
+                        .retrieve()
+                        .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
+                        .block();
+
+                // Extract product name from API response
+                String productName = productDetails != null ? (String) productDetails.get("name") : "Unknown";
+
+                // Populate CustomerSummaryDto
+                customerSummaryDto.setCount(((Number) obj[0]).longValue());
+                customerSummaryDto.setProduct_id(productId);
+                customerSummaryDto.setCustomerName((String) obj[2]);
+                customerSummaryDto.setProductName(productName);
+
+                // Add to the list
+                customerSummaryDtos.add(customerSummaryDto);
+            }
         }
-        return objs;
+
+        return customerSummaryDtos;
     }
 
 }

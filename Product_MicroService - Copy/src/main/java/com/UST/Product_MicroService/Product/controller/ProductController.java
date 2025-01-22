@@ -10,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired
@@ -24,8 +24,8 @@ public class ProductController {
 
     }
 
-    @GetMapping("/getProductById")
-    public ResponseEntity<Product> getProductById(@RequestParam Long id){
+    @GetMapping("/getProductById/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id){
         return new ResponseEntity<>(productService.getCategoryById(id),HttpStatus.OK);
     }
 

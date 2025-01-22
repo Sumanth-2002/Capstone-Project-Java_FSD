@@ -1,6 +1,7 @@
 package com.ust.sales_service.controller;
 
 
+import com.ust.sales_service.dto.CustomerSummaryDto;
 import com.ust.sales_service.dto.SalesSummaryDto;
 import com.ust.sales_service.model.Customer;
 import com.ust.sales_service.model.Sales;
@@ -60,8 +61,8 @@ public class SalesController {
         return salesService.getSalesByDate();
     }
 
-    @GetMapping("/getCustomerData")
-    public List<Object []> getCustomerData(){
-        return salesService.getCustomerDat();
+    @GetMapping("/getCustomerData/{customerId}")
+    public List<CustomerSummaryDto> getCustomerData(@PathVariable Long customerId){
+        return salesService.getCustomerData(customerId);
     }
 }

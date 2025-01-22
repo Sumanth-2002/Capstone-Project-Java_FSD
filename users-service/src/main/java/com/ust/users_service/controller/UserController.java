@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 @CrossOrigin("*")
 public class UserController {
     @Autowired
@@ -44,5 +44,7 @@ public class UserController {
             throw new UsernameNotFoundException("invalid user request !");
         }
     }
+    @GetMapping
+    public String getUSer(){ return "Hello";}
 
 }
