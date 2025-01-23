@@ -49,7 +49,13 @@
   .user-info-container {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: flex-end; /* Ensures user info is aligned to the right */
+  }
+  .user-info {
+    display: flex;
+    flex-direction: column; /* Stack username and role vertically */
+    align-items: flex-end; /* Align text to the right */
   }
   
   .username {
@@ -59,8 +65,9 @@
   }
   
   .role {
-    font-size: 16px;
+    font-size: 13px;
     color: #bdc3c7;
+    text-align: justify;
   }
   
   @media (max-width: 768px) {

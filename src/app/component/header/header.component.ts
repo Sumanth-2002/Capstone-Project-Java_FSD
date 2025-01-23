@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   
   username: string = 'John Doe';  // You can fetch this dynamically from the authentication service
-  role: string = 'Administrator'; // Similarly, you can fetch the role dynamically
+  role: string = 'Admin'; // Similarly, you can fetch the role dynamically
 
   constructor() { }
 

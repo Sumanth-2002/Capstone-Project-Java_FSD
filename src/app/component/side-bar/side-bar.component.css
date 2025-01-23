@@ -1,14 +1,24 @@
 .sidenav-container {
-  height: 100vh;
+  height: 100vh; /* Full viewport height */
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .sidenav {
-  width: 240px;
+  width: 250px; /* Unified width */
+  height: 100%;
+  position: fixed; /* Sidebar is fixed on the left */
+  top: 100px; /* Adjusted to account for the header */
+  left: 0;
+  background: #f4f4f4; /* Light gray background */
+  border-right: 1px solid #ddd; /* Subtle border for separation */
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1); /* Shadow for better visual */
+  overflow-y: auto; /* Scrollable content */
+  z-index: 900; /* Below the header */
 }
 
 .mat-toolbar {
   position: sticky;
-  top: 0;
+  top: 20;
   z-index: 1000;
 }
 
