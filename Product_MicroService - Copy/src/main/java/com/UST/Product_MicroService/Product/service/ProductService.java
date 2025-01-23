@@ -1,11 +1,8 @@
 package com.UST.Product_MicroService.Product.service;
 
-import com.UST.Product_MicroService.Product.model.Category;
 import com.UST.Product_MicroService.Product.model.Product;
-import com.UST.Product_MicroService.Product.repository.CategoryRepository;
 import com.UST.Product_MicroService.Product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,14 +14,10 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
 
-    public Product addProduct(Product product,Long categoryId){
-        Category category= categoryRepository.findById(categoryId).orElse(null);
-        product.setCategory(category);
-        productRepository.save(product);
-        return product;
+    public Product addProduct(Product product){
+
+        return  productRepository.save(product);
     }
 
     public Product getCategoryById(Long id) {
@@ -43,8 +36,6 @@ public class ProductService {
             Product existingProduct = optionalProduct.get();
             existingProduct.setName(productDetails.getName());
             existingProduct.setPrice(productDetails.getPrice());
-            existingProduct.setCategory(productDetails.getCategory());
-//            existingProduct.setSellerId(productDetails.getSellerId());
             existingProduct.setUpdatedAt(productDetails.getUpdatedAt());
             existingProduct.setActive(productDetails.isActive());
 
@@ -56,5 +47,5 @@ public class ProductService {
     public List<String> getAllProductNames(){
         return productRepository.getAllProductName();
     }
-
+    public List<Product> getAllProducts(){return productRepository.findAll();}
 }

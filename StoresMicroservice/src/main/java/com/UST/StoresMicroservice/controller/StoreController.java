@@ -4,9 +4,11 @@ import com.UST.StoresMicroservice.dto.InventoryUpdateDto;
 import com.UST.StoresMicroservice.dto.RegionalStoreId;
 import com.UST.StoresMicroservice.dto.StoreDto;
 import com.UST.StoresMicroservice.model.Inventory;
+import com.UST.StoresMicroservice.model.Restock;
 import com.UST.StoresMicroservice.model.Store;
 import com.UST.StoresMicroservice.repository.StoreRepository;
 import com.UST.StoresMicroservice.service.InventoryService;
+import com.UST.StoresMicroservice.service.RestockService;
 import com.UST.StoresMicroservice.service.StoreService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class StoreController {
 
     @Autowired
     private StoreRepository storeRepository;
+
+    @Autowired
+    private RestockService restockService;
 
     @PostMapping
     public ResponseEntity<Store> createStore(@RequestBody Store store) {
@@ -103,6 +108,23 @@ public class StoreController {
     public Optional<Long> getInventoryId(@PathVariable Long storeId){
         return  inventoryService.getInventoryId(storeId);
     }
+    @PostMapping("/raise-restock-request")
+    public ResponseEntity<Restock> raiseRequest(Restock restock){
+        return ResponseEntity.ok(restockService.requestForStock(restock));
+    }
+    @GetMapping("/get-requests")
+    public ResponseEntity<List<Restock>> getAllRequests(){
+        return ResponseEntity.ok(restockService.getAllRestock());
+    }
 
+    @PutMapping("/update-requests")
+    public  ResponseEntity<Restock> updateRestock(Restock restock){
+        return ResponseEntity.ok(restockService.updateStatus(restock));
+    }
+
+    @GetMapping("/get-pending-requests")
+    public ResponseEntity<List<Restock>> getPendingRequests(){
+        return  ResponseEntity.ok(restockService.getAllPendingRequests());
+    }
 
 }

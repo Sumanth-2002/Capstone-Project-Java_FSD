@@ -5,14 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f31df3b2-284f-4614-8276-5e8c1fc9fcc7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/model/Category.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Purchase-Service/src/main/java/com/ust/Purchase_Service/model/Purchases.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Purchase-Service/src/main/java/com/ust/Purchase_Service/model/Purchases.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/repository/CategoryRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/service/CategoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Product_MicroService - Copy/src/main/java/com/UST/Product_MicroService/Product/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Purchase-Service/src/main/java/com/ust/Purchase_Service/controller/PurchaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Purchase-Service/src/main/java/com/ust/Purchase_Service/controller/PurchaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Purchase-Service/src/main/java/com/ust/Purchase_Service/service/Purchase_Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Purchase-Service/src/main/java/com/ust/Purchase_Service/service/Purchase_Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/controller/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/controller/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/model/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/repository/InventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/repository/InventoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/service/InventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../StoresMicroservice/src/main/java/com/UST/StoresMicroservice/service/InventoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sales-service/src/main/java/com/ust/sales_service/dto/StoreSalesDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sales-service/src/main/java/com/ust/sales_service/dto/StoreSalesDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sales-service/src/main/java/com/ust/sales_service/model/Sales.java" beforeDir="false" afterPath="$PROJECT_DIR$/../sales-service/src/main/java/com/ust/sales_service/model/Sales.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/UsersServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/UsersServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/UserInfoUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/UserInfoUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/UserInfoUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/config/UserInfoUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/dto/AuthRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/dto/AuthRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/filter/CustomHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/filter/CustomHeaderFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/filter/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/filter/JwtAuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/model/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/model/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/java/com/ust/users_service/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../users-service/src/test/java/com/ust/users_service/UsersServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../users-service/src/test/java/com/ust/users_service/UsersServiceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,15 +72,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;sales-service&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/Desktop/Capstone Project/Capstone-Project-Java_FSD/seller-service&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "sales-service",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Administrator/Desktop/Capstone Project/Capstone-Project-Java_FSD/sales-service"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

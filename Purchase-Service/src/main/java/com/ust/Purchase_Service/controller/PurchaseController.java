@@ -1,5 +1,6 @@
 package com.ust.Purchase_Service.controller;
 
+import com.ust.Purchase_Service.dto.RestockPurchaseData;
 import com.ust.Purchase_Service.model.Purchases;
 import com.ust.Purchase_Service.service.Purchase_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,8 @@ public class PurchaseController {
         return  purchase_service.getWholePurchase();
     }
 
+    @PostMapping("/add-restock-purchase")
+    public Purchases addRestockPurchase(@RequestBody RestockPurchaseData restockPurchaseData){
+        return purchase_service.addRestockPurchase(restockPurchaseData);
+    }
 }

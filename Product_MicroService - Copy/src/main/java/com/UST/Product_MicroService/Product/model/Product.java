@@ -9,14 +9,12 @@ import java.time.LocalDate;
 
 @Entity
 public class Product{
-    public Product(Long productId, String name, double price , LocalDate updatedAt, boolean isActive,Category category) {
+    public Product(Long productId, String name, double price , LocalDate updatedAt, boolean isActive) {
         this.productId = productId;
         this.name = name;
         this.price = price;
-        this.category = category;
-
         this.updatedAt = updatedAt;
-        this.isActive = isActive;
+
     }
 
     public Product() {
@@ -46,15 +44,6 @@ public class Product{
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-
 
     public LocalDate getUpdatedAt() {
         return updatedAt;
@@ -78,7 +67,5 @@ public class Product{
     private double price;
     private LocalDate updatedAt;
     private boolean isActive;
-    @ManyToOne
-    @JsonIgnore
-    private Category category;
+
 }

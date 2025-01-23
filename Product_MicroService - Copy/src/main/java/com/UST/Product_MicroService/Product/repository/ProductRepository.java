@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long> {
-    List<Product> findByCategory_CategoryId(int categoryId);
     @Query("SELECT p.name from Product p ORDER By p.name")
     List<String> getAllProductName();
 }
