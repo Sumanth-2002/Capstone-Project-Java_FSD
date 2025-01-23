@@ -11,7 +11,7 @@
 .main-content {
     display: flex;
     margin-top: 60px;
-    /* Matches the header height */
+    /* Matches the header height dd*/
     height: calc(100vh - 60px);
     overflow: hidden;
 }

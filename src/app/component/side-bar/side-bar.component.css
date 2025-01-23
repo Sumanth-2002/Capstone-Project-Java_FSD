@@ -1,35 +1,38 @@
+/* Sidebar Container */
 .sidenav-container {
   height: 100vh; /* Full viewport height */
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #388de7;
 }
 
+/* Sidebar */
 .sidenav {
-  width: 250px; /* Unified width */
-  height: 100%;
-  position: fixed; /* Sidebar is fixed on the left */
-  top: 100px; /* Adjusted to account for the header */
+  width: 250px; /* Fixed width */
+  height: calc(100vh - 60px); /* Adjusted for header height */
+  position: fixed;
+  top: 60px; /* Below the header */
   left: 0;
-  background: #f4f4f4; /* Light gray background */
-  border-right: 1px solid #ddd; /* Subtle border for separation */
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1); /* Shadow for better visual */
-  overflow-y: auto; /* Scrollable content */
+  color: #fff; /* Text color */
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Scrollable if content overflows */
   z-index: 900; /* Below the header */
 }
 
+/* List Items (Links) */
+.mat-list-item {
+  color: #fff; /* Default text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mat-list-item:hover {
+  background-color: #34495e; /* Hover background */
+  color: #1abc9c; /* Hover text color */
+}
+
+/* Active Link */
 .active-link {
-  font-weight: bold;          /* Makes the active link text bold */
-  color: #3f51b5;             /* Example: Material Design blue */
-  background-color: #99a8ff;  /* Light gray background for active link */
-  border-right: 4px solid #3f51b5; /* Highlight with a left border */
-}
-
-
-.mat-toolbar {
-  position: sticky;
-  top: 20;
-  z-index: 1000;
-}
-
-.content {
-  padding: 1rem;
+  font-weight: bold;
+  color: #1abc9c; /* Active link text color */
+  background-color: #32b8c2; /* Active link background */
+  border-right: 10px solid #1a22bc; /* Left border for active link */
 }
