@@ -16,6 +16,14 @@
   z-index: 900; /* Below the header */
 }
 
+.active-link {
+  font-weight: bold;          /* Makes the active link text bold */
+  color: #3f51b5;             /* Example: Material Design blue */
+  background-color: #99a8ff;  /* Light gray background for active link */
+  border-right: 4px solid #3f51b5; /* Highlight with a left border */
+}
+
+
 .mat-toolbar {
   position: sticky;
   top: 20;

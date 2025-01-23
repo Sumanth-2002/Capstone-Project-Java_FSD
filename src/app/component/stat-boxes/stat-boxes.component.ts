@@ -10,8 +10,8 @@ import { Component } from '@angular/core';
 })
 export class StatBoxesComponent {
   stats = [
-    { title: 'Total Product Purchased', value: '100' },
-    { title: 'Total Product Sold', value: '90' },
-    { title: 'Total Revenue', value: '₹1,00,000' }
+    { title: 'Total Purchase', value: '₹1,50,000' },
+    { title: 'Total Sales', value: '₹2,00,000' },
+    { title: 'Total Revenue', value: '₹50,000' }
   ];
 }

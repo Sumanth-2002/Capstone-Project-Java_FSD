@@ -1,0 +1,42 @@
+/* Main layout styles */
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* Main content styles (below header) */
+.main-content {
+    display: flex;
+    margin-top: 60px;
+    /* Matches the header height */
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background: #f4f4f4;
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 100px;
+    border-right: 1px solid #ddd;
+    /* box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1); */
+    overflow-y: auto;
+    z-index: 900;
+    padding-top: 30px;
+}
+
+/* Content area styles */
+.content {
+    flex: 1;
+    margin-left: 250px;
+    /* Matches the sidebar width */
+    padding: 20px;
+    background: #fce8d3;
+    overflow-y: auto;
+}

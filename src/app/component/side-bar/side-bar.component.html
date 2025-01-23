@@ -10,10 +10,10 @@
     <!-- <mat-toolbar color="primary">Menu</mat-toolbar> -->
     <mat-nav-list style="padding-top: 20px;">
       <a mat-list-item href="#">Logout</a>
-      <a mat-list-item href="#" >Home</a>
-      <a mat-list-item href="#">Regional Manager</a>
-      <a mat-list-item href="#">Customer</a>
-      <a mat-list-item href="#">Metrics</a>
+      <a mat-list-item [routerLink]="'/home'" routerLinkActive="active-link">Home</a>
+      <a mat-list-item [routerLink]="'/regManager'" routerLinkActive="active-link">Regional Manager</a>
+      <a mat-list-item [routerLink]="'/customer'" routerLinkActive="active-link">Customer</a>
+      <a mat-list-item [routerLink]="'/metrics'" routerLinkActive="active-link">Metrics</a>
       <a mat-list-item href="#">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
