@@ -10,7 +10,7 @@ public class Sales {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long saleId;
-    private int storeId;
+    private Long storeId;
 //    private Long customerId;
 
     @ManyToOne
@@ -31,11 +31,11 @@ public class Sales {
         this.saleId = saleId;
     }
 
-    public int getStoreId() {
+    public Long getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(int storeId) {
+    public void setStoreId(Long storeId) {
         this.storeId = storeId;
     }
 
@@ -90,7 +90,7 @@ public class Sales {
     public Sales() {
     }
 
-    public Sales(int storeId, Customer customer, Long productId, int quantity, Double totalPrice, Date saleDate, String paymentMethod) {
+    public Sales(Long storeId, Customer customer, Long productId, int quantity, Double totalPrice, Date saleDate, String paymentMethod) {
         this.storeId = storeId;
         this.customer = customer;
         this.productId = productId;

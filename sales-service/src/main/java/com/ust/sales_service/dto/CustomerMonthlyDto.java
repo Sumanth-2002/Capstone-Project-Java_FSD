@@ -1,22 +1,22 @@
 package com.ust.sales_service.dto;
 
 public class CustomerMonthlyDto {
-    private Integer month;
+    private String month;
     private Long noOfCustomers;
 
     public CustomerMonthlyDto() {
     }
 
-    public CustomerMonthlyDto(Integer month, Long noOfCustomers) {
+    public CustomerMonthlyDto(String month, Long noOfCustomers) {
         this.month = month;
         this.noOfCustomers = noOfCustomers;
     }
 
-    public Integer getMonth() {
+    public String getMonth() {
         return month;
     }
 
-    public void setMonth(Integer month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 

@@ -34,73 +34,53 @@ public class SalesController {
     public Sales addSalesData(@RequestBody Sales sales){
         return salesService.addSalesData(sales);
     }
-    @GetMapping("/customers")
+    @GetMapping("/customer-metrics/customers")
     public List<Customer> getAllCustomer(){
         return salesService.getAllCustomer();
     }
 
-    @GetMapping("/sales")
-    public List<Sales> getAllSales(){
-        return salesService.getAllSales();
-    }
     @PostMapping("/upload")
     public ResponseEntity<String> uploadCSV(@RequestParam("sales_data") MultipartFile file) {
         try {
-            // Save the uploaded file to a temporary location
             Path tempFile = Files.createTempFile("sales_data", ".csv");
             Files.copy(file.getInputStream(), tempFile, StandardCopyOption.REPLACE_EXISTING);
-
-            // Process the file and save data
             salesService.saveSalesDataFromCSV(tempFile.toString());
-
-            // Delete the temporary file
             Files.delete(tempFile);
-
             return ResponseEntity.ok("Sales data successfully saved!");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error occurred while processing the file");
         }
     }
-
-    @GetMapping("/getByDate")
-    public List<SalesSummaryDto> getSaleByDate(){
-        return salesService.getSalesByDate();
-    }
-
     @GetMapping("/getCustomerData/{customerId}")
     public List<CustomerSummaryDto> getCustomerData(@PathVariable Long customerId){
         return salesService.getCustomerData(customerId);
     }
 
-    @GetMapping("/getAllRegion")
+    @GetMapping("/region-wise-sales")
     public List<RegionalSalesDto>getSalesByRegion(){
         return regionalSalesDataService.getRegionWiseSalesData();
     }
-
     @GetMapping("/getSalesRegion/{region}")
     public List<StoreSalesDto> getStoreSaleData(@PathVariable String region){
         return regionalSalesDataService.getStoreByRegion(region);
     }
 
-    @GetMapping("/product-metrics/year/{year}")
-    public List<Object[]> getProductMetrics(@PathVariable Integer year){
-        return metrics.getProductMetrics(year);
-    }
-    @GetMapping("/product-metrics/month/{month}/year/{year}")
-    public List<Object[]> getProductMetricsByMonthAndYear(@PathVariable Integer month, @PathVariable Integer year) {
-        return metrics.getProductMetricsByMonth(month, year);
-    }
 
     @GetMapping("/customer-metrics/{year}")
     public List<CustomerMonthlyDto> getCustomerByYear(@PathVariable Integer year){
         return metrics.getCustomerPerMonth(year);
     }
     @GetMapping("/sale-metrics/{year}")
-    public List<Double []> getSaleByYear(@PathVariable Integer year){
+    public List<SalesYearDto> getSaleByYear(@PathVariable Integer year){
         return metrics.getSalePerMonth(year);
     }
-
+    @GetMapping("/monthly-product-quantity")
+    public List<ProductQuantityDto> getMonthlyProductQuantity(
+            @RequestParam String productName,
+            @RequestParam int year) {
+        return metrics.getMonthlyProductQuantity(productName, year);
+    }
 
 
 }

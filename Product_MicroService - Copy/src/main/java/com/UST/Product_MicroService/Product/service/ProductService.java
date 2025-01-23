@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,7 +44,7 @@ public class ProductService {
             existingProduct.setName(productDetails.getName());
             existingProduct.setPrice(productDetails.getPrice());
             existingProduct.setCategory(productDetails.getCategory());
-            existingProduct.setSellerId(productDetails.getSellerId());
+//            existingProduct.setSellerId(productDetails.getSellerId());
             existingProduct.setUpdatedAt(productDetails.getUpdatedAt());
             existingProduct.setActive(productDetails.isActive());
 
@@ -51,6 +52,9 @@ public class ProductService {
         } else {
             return null;
         }
+    }
+    public List<String> getAllProductNames(){
+        return productRepository.getAllProductName();
     }
 
 }

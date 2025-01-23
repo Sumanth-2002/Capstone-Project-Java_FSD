@@ -3,7 +3,7 @@ package com.ust.sales_service.service;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import com.ust.sales_service.dto.CustomerSummaryDto;
-import com.ust.sales_service.dto.SalesSummaryDto;
+import com.ust.sales_service.dto.InventoryUpdateDto;
 import com.ust.sales_service.model.Customer;
 import com.ust.sales_service.model.Sales;
 import com.ust.sales_service.repository.CustomerRepository;
@@ -16,10 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class SalesService {
@@ -35,7 +32,28 @@ public class SalesService {
     public Sales addSalesData(Sales sales) {
         Customer customer = sales.getCustomer();
         Long productId = sales.getProductId();
-        
+        Optional<Long> inventoryId = WebClient.builder()
+                .baseUrl("http://localhost:9094")
+                .build()
+                .get()
+                .uri("/api/stores/getInventoryId/"+sales.getStoreId())
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Optional<Long>>() {})
+                .block();
+        InventoryUpdateDto inventoryUpdateDto = new InventoryUpdateDto();
+        inventoryUpdateDto.setInventoryId(inventoryId.get());
+        inventoryUpdateDto.setProductId(sales.getProductId());
+        inventoryUpdateDto.setStock(sales.getQuantity());
+
+        Optional<Object> object = WebClient.builder()
+                .baseUrl("http://localhost:9094")
+                .build()
+                .put() // Use POST to send the DTO in the body
+                .uri("/api/stores/inventory/updateSale") // Direct URI without query parameters
+                .bodyValue(inventoryUpdateDto) // Attach the DTO as the body
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Optional<Object>>() {})
+                .block();
         if (customer != null) {
             if (customer.getCustomerId() == null) {
                 customer = customerRepository.save(customer);
@@ -44,7 +62,7 @@ public class SalesService {
         } else {
             throw new IllegalArgumentException("Customer details are missing in the sales data");
         }
-        return salesRepository.save(sales); // Save the sales entity
+        return salesRepository.save(sales);
     }
 
     public  List<Customer> getAllCustomer(){
@@ -69,7 +87,7 @@ public class SalesService {
                     customerRepository.save(customer);
 
                 Sales sales = new Sales();
-                sales.setStoreId(Integer.parseInt(line[1]));
+                sales.setStoreId(Long.valueOf(line[1]));
                 sales.setCustomer(customer);
                 sales.setProductId(Long.valueOf(line[5]));
                 sales.setQuantity(Integer.parseInt(line[6]));
@@ -93,29 +111,9 @@ public class SalesService {
         }
     }
 
-    public List<Sales> getAllSales(){
-        return salesRepository.findAll();
-    }
 
-    public List<SalesSummaryDto> getSalesByDate(){
-
-        List<Object[]> results = salesRepository.getSalesSummaryByDate();
-        List<SalesSummaryDto> salesSummary = new ArrayList<>();
-        System.out.println(results);
-
-        for (Object[] record : results) {
-            Date saleDate = (Date) record[0];
-            Double totalPrice = ((Double) record[1]).doubleValue(); // Second column: SUM(total_price)
-            Long totalSales = ((Long) record[2]).longValue();     // Third column: COUNT(sale_id)
-
-            salesSummary.add(new SalesSummaryDto(saleDate, totalPrice, totalSales));
-        }
-
-        return salesSummary;
-    }
     public List<CustomerSummaryDto> getCustomerData(Long customerId) {
 
-        // Fetch customer data from the repository
         List<Object[]> objs = customerRepository.getCustomerDataById(customerId);
 
         List<CustomerSummaryDto> customerSummaryDtos = new ArrayList<>();

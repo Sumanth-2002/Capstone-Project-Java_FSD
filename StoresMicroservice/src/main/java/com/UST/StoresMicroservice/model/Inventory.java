@@ -8,7 +8,12 @@ import java.time.LocalDate;
 public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long inventoryId;
+    private Long storeId;
+    private Long productId;
+    private int stock;
+    private LocalDate lastUpdated;
 
     public Inventory() {
     }
@@ -61,10 +66,7 @@ public class Inventory {
         this.lastUpdated = lastUpdated;
     }
 
-    private Long storeId;
-    private Long productId;
-    private int stock;
-    private LocalDate lastUpdated;
+
 //    @OneToOne
 //    @JoinColumn(name = "store")
 //    @JsonIgnore
@@ -77,4 +79,6 @@ public class Inventory {
 //    public void setStore(Store store) {
 //        this.store = store;
 //    }
+
+
 }

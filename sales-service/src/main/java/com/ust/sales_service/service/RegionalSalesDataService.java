@@ -61,7 +61,7 @@ public class RegionalSalesDataService {
                 .block();
       for(Map<String,Object> obj:list){
           StoreSalesDto storeSalesDto = new StoreSalesDto();
-          Integer storeId = (Integer)obj.get("storeId");
+          Long storeId = Long.valueOf(obj.get("storeId").toString());
 
           storeSalesDto.setStoreId(storeId);
           storeSalesDto.setStoreName((String)obj.get("storeName"));

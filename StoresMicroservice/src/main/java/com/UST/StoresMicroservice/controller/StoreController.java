@@ -1,5 +1,6 @@
 package com.UST.StoresMicroservice.controller;
 
+import com.UST.StoresMicroservice.dto.InventoryUpdateDto;
 import com.UST.StoresMicroservice.dto.RegionalStoreId;
 import com.UST.StoresMicroservice.dto.StoreDto;
 import com.UST.StoresMicroservice.model.Inventory;
@@ -9,12 +10,14 @@ import com.UST.StoresMicroservice.service.InventoryService;
 import com.UST.StoresMicroservice.service.StoreService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/stores")
@@ -39,17 +42,9 @@ public class StoreController {
         List<Store> stores = storeService.getAllStores();
         return new ResponseEntity<>(stores, HttpStatus.OK);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Store> getStoreById(@PathVariable("id") Long storeId) {
         return storeService.getStoreById(storeId)
-                .map(store -> new ResponseEntity<>(store, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Store> updateStore(@PathVariable("id") Long storeId, @RequestBody Store updatedStore) {
-        return storeService.updateStore(storeId, updatedStore)
                 .map(store -> new ResponseEntity<>(store, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -71,25 +66,17 @@ public class StoreController {
         return new ResponseEntity<>(storeService.getAllStoresByRegion(regionName),HttpStatus.OK);
     }
 
-//    @GetMapping("/inventory/getAll")
-//    public ResponseEntity<List<Inventory>> getAllInventories() {
-//        List<Inventory> inventories = inventoryService.getAllInventories();
-//        return new ResponseEntity<>(inventories, HttpStatus.OK);
-//    }
 
-    @GetMapping("inventory/getById/{id}")
-    public ResponseEntity<Inventory> getInventoryById(@PathVariable("id") Long inventoryId) {
-        return inventoryService.getInventoryById(inventoryId)
-                .map(inventory -> new ResponseEntity<>(inventory, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @PutMapping("inventory/updatePurchase")
+    public ResponseEntity<Optional<Inventory>> updateInventoryPurchase(@RequestBody InventoryUpdateDto inventoryUpdateDto) {
+        return ResponseEntity.ok(inventoryService.updatePurchaseInventory(inventoryUpdateDto));
+    }
+      @PutMapping("inventory/updateSale")
+    public ResponseEntity<Optional<Inventory>> updateInventorySale(@RequestBody InventoryUpdateDto inventoryUpdateDto) {
+        return ResponseEntity.ok(inventoryService.updateSalesInventory(inventoryUpdateDto));
     }
 
-    @PutMapping("inventory/update/{id}")
-    public ResponseEntity<Inventory> updateInventory(@PathVariable("id") Long inventoryId, @RequestBody Inventory updatedInventory) {
-        return inventoryService.updateInventory(inventoryId, updatedInventory)
-                .map(inventory -> new ResponseEntity<>(inventory, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+
 
     @DeleteMapping("inventory/deleteById/{id}")
     public ResponseEntity<Void> deleteInventory(@PathVariable("id") Long inventoryId) {
@@ -98,7 +85,7 @@ public class StoreController {
     }
 
     @GetMapping("inventory/getByStoreId")
-    public ResponseEntity<Inventory> getByStoreId(@RequestParam Long storeId){
+    public List<Optional<Inventory>> getByStoreId(@RequestParam Long storeId){
         return inventoryService.getByStoreId(storeId);
     }
 
@@ -110,6 +97,11 @@ public class StoreController {
     @GetMapping("/getALlStores")
     public List<RegionalStoreId>getAllStoreBYRegion(){
         return storeService.getStoreIdsGroupedByRegion();
+    }
+
+    @GetMapping("/getInventoryId/{storeId}")
+    public Optional<Long> getInventoryId(@PathVariable Long storeId){
+        return  inventoryService.getInventoryId(storeId);
     }
 
 

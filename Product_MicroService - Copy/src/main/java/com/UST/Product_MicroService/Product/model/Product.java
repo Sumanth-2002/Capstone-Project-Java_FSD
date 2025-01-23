@@ -9,12 +9,12 @@ import java.time.LocalDate;
 
 @Entity
 public class Product{
-    public Product(Long productId, String name, double price , Long sellerId, LocalDate updatedAt, boolean isActive,Category category) {
+    public Product(Long productId, String name, double price , LocalDate updatedAt, boolean isActive,Category category) {
         this.productId = productId;
         this.name = name;
         this.price = price;
         this.category = category;
-        this.sellerId = sellerId;
+
         this.updatedAt = updatedAt;
         this.isActive = isActive;
     }
@@ -54,13 +54,7 @@ public class Product{
         this.category = category;
     }
 
-    public Long getSellerId() {
-        return sellerId;
-    }
 
-    public void setSellerId(Long sellerId) {
-        this.sellerId = sellerId;
-    }
 
     public LocalDate getUpdatedAt() {
         return updatedAt;
@@ -82,7 +76,6 @@ public class Product{
     private Long productId;
     private String name;
     private double price;
-    private Long sellerId;
     private LocalDate updatedAt;
     private boolean isActive;
     @ManyToOne

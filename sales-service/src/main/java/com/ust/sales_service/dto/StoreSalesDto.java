@@ -2,10 +2,10 @@ package com.ust.sales_service.dto;
 
 public class StoreSalesDto {
     private String storeName;
-    private Integer storeId;
+    private Long storeId;
     private Double totalSale;
 
-    public StoreSalesDto(String storeName, Integer storeId, Double totalSale) {
+    public StoreSalesDto(String storeName, Long storeId, Double totalSale) {
         this.storeName = storeName;
         this.storeId = storeId;
         this.totalSale = totalSale;
@@ -22,11 +22,11 @@ public class StoreSalesDto {
         this.totalSale = totalSale;
     }
 
-    public Integer getStoreId() {
+    public Long getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(Integer storeId) {
+    public void setStoreId(Long storeId) {
         this.storeId = storeId;
     }
 

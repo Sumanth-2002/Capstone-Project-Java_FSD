@@ -68,4 +68,10 @@ public class ProductController {
         return new ResponseEntity<>(categoryService.updateCategoryById(id, category), HttpStatus.OK);
     }
 
+    @GetMapping("/getAllProductnames")
+    public ResponseEntity<List<String>> getAllProductNames(){
+        return ResponseEntity.ok(productService.getAllProductNames());
+    }
+
+
 }

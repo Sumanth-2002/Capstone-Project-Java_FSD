@@ -12,14 +12,14 @@ public class Purchases {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long purchaseId;
-    private int storeId;
-    private int productId;
+    private Long storeId;
+    private Long productId;
     private int quantity;
     private Double pricePerUnit;
     private Double totalCost;
     private Date purchaseDate;
 
-    public Purchases(int storeId, int productId, int quantity, Double pricePerUnit, Double totalCost, Date purchaseDate) {
+    public Purchases(Long storeId, Long productId, int quantity, Double pricePerUnit, Double totalCost, Date purchaseDate) {
         this.storeId = storeId;
         this.productId = productId;
         this.quantity = quantity;
@@ -39,19 +39,19 @@ public class Purchases {
         this.purchaseId = purchaseId;
     }
 
-    public int getStoreId() {
+    public Long getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(int storeId) {
+    public void setStoreId(Long storeId) {
         this.storeId = storeId;
     }
 
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
