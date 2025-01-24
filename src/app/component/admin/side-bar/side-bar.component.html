@@ -1,0 +1,21 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar -->
+  <mat-sidenav
+    class="sidenav"
+    mode="side"
+    opened="true"
+    fixedInViewport
+    role="navigation"
+    style="padding-top: 50px; background-color: #388de7;"
+  >
+    <!-- <mat-toolbar color="primary">Menu</mat-toolbar> -->
+    <mat-nav-list style="padding-top: 20px;">
+      <a mat-list-item [routerLink]="'/admin-home'" routerLinkActive="active-link">Home</a>
+      <a mat-list-item [routerLink]="'/admin-regManager'" routerLinkActive="active-link">Regional Manager</a>
+      <a mat-list-item [routerLink]="'/admin-products'" routerLinkActive="active-link">Product</a>
+      <a mat-list-item [routerLink]="'/admin-customer'" routerLinkActive="active-link">Customer</a>
+      <a mat-list-item [routerLink]="'/admin-metrics'" routerLinkActive="active-link">Metrics</a>
+      <a mat-list-item href="#">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>
