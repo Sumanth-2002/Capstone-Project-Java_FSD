@@ -10,7 +10,14 @@
             <app-sidebar></app-sidebar>
         </aside>
         <section class="content">
-            <p>regional-manager works!</p>
+            <h2>Regional Managers</h2>
+            <div class="cards-container">
+                <app-reg-man-card *ngFor="let manager of regionalManagers; let i = index"
+                    [regionalManager]="manager" (delete)="deleteManager(i)"></app-reg-man-card>
+            </div>
+            <button (click)="showForm = true" class="add-button">Add New Regional Manager</button>
+            <app-reg-man-form *ngIf="showForm"
+                (save)="addNewManager($event)"></app-reg-man-form>
         </section>
     </div>
 </div>

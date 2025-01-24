@@ -40,3 +40,23 @@
     background: #fce8d3;
     overflow-y: auto;
 }
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.add-button {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.add-button:hover {
+    background: #218838;
+}
