@@ -10,7 +10,50 @@
             <app-sidebar></app-sidebar>
         </aside>
         <section class="content">
-            <p>customer works!</p>
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <span class="material-icons">search</span>
+                <input type="text" placeholder="Search for Customer" />
+            </div>
+
+            <!-- Customer Cards -->
+            <div class="customer-cards">
+                <div *ngFor="let customer of customers" class="customer-card" (click)="openModal(customer)">
+                    <div class="profile-icon">
+                        <span class="material-icons">person</span>
+                    </div>
+                    <div class="customer-details">
+                        <p><strong>ID:</strong> {{ customer.id }}</p>
+                        <p><strong>Name:</strong> {{ customer.name }}</p>
+                        <p><strong>Contact:</strong> {{ customer.contact }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Detailed Customer Information -->
+            <div *ngIf="selectedCustomer" class="modal-overlay" (click)="closeModal()">
+                <div class="modal-content" (click)="$event.stopPropagation()">
+                    <div class="modal-header">
+                        <h2>Customer Details</h2>
+                        <button class="close-button" (click)="closeModal()">
+                            <span class="material-icons">close</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="details-container">
+                            <div class="customer-details">
+                                <p><strong>ID:</strong> {{ selectedCustomer.id }}</p>
+                                <p><strong>Name:</strong> {{ selectedCustomer.name }}</p>
+                                <p><strong>Contact:</strong> {{ selectedCustomer.contact }}</p>
+                            </div>
+                            <div class="profile-icon-large">
+                                <span class="material-icons">person</span>
+                            </div>
+                        </div>
+                        <div class="empty-div"></div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </div>
